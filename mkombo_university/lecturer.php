@@ -1,6 +1,9 @@
 <?php 
+	include('config/config.php');
+	include('config/functions.php');
 	include('header/head.php');
 	include('header/asideMenuLecturer.php');
+	
 ?>
   <aside class="main-sidebar">
     <section class="sidebar">
@@ -8,9 +11,9 @@
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">USER MANAGEMENT</li>
-        <li class="active"><a href="lecturer.php"><i class="fa fa-files-o"></i> <span>Student Marks</span> </a></li>
+        <li class="active"><a href="lecturer.php?user=lecturer"><i class="fa fa-files-o"></i> <span>Student Marks</span> </a></li>
 		<!--end of student marks-->
-		<li><a href="lecturerProfile.php"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
+		<li><a href="lecturerProfile.php?user=lecturer"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -22,7 +25,7 @@
     <section class="content-header">
       <h1>Student Marks<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="lecturer.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="lecturer.php?user=lecturer"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Student Marks</li>
       </ol>
     </section>

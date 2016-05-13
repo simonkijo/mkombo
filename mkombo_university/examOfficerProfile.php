@@ -2,7 +2,7 @@
 	include('config/config.php');
 	include('config/functions.php');
 	include('header/head.php');
-	include('header/asideMenuLecturer.php');
+	include('header/asideMenuExamOfficer.php');
 	include('data/profileData.php');
 	
 	if(isset($_GET['response'])){
@@ -13,15 +13,41 @@
 		}
 	}
 ?>
-  <aside class="main-sidebar">
+<aside class="main-sidebar">
+
     <section class="sidebar">
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">USER MANAGEMENT</li>
-        <li><a href="lecturer.php?user=lecturer"><i class="fa fa-files-o"></i> <span>Student Marks</span> </a></li>
-		<!--end of student marks-->
-		<li class="active"><a href="lecturerProfile.php?user=lecturer"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-th"></i> <span>Subjects Catalogue</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li>
+				<a href="#"><i class="fa fa-book"></i> <span>Bachelor Degree</span> <i class="fa fa-angle-left pull-right"></i></a>
+				<ul class="treeview-menu">
+					<li><a href="examinationOfficer.php?user=examination_officer"><i class="fa fa-circle-o"></i> <span>Computer Eng</span> </a></li>
+					<li><a href="examOfficerCivil.php?user=examination_officer"><i class="fa fa-circle-o"></i> <span>Civil Eng</span> </a></li>
+					<li><a href="examOfficerTele.php?user=examination_officer"><i class="fa fa-circle-o"></i> <span>Telecommunication Eng</span> </a></li>
+					<li><a href="examOfficerMech.php?user=examination_officer"><i class="fa fa-circle-o"></i> <span>Mechanical Eng</span> </a></li>
+					<li><a href="examOfficerEle.php?user=examination_officer"><i class="fa fa-circle-o"></i> <span>Electrical Eng</span> </a></li>
+				</ul>
+			</li>
+          </ul>
+        </li>
+		<!--end of subjects catalog-->
+		<li class="treeview">
+          <a href="#"><i class="fa fa-files-o"></i> <span>GPA Computation</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+			<li><a href="examGpaComp.php?user=examination_officer"><i class="fa fa-book"></i> <span>Computer Eng</span> </a></li>
+			<li><a href="#"><i class="fa fa-book"></i> <span>Civil Eng</span> </a></li>
+			<li><a href="#"><i class="fa fa-book"></i> <span>Telecommunication Eng</span> </a></li>
+			<li><a href="#"><i class="fa fa-book"></i> <span>Mechanical Eng</span> </a></li>
+			<li><a href="#"><i class="fa fa-book"></i> <span>Electrical Eng</span> </a></li>
+          </ul>
+        </li>
+		<!--end of GPA computation-->
+		<li class="active"><a href="examOfficerProfile.php?user=examination_officer"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -33,7 +59,7 @@
     <section class="content-header">
       <h1>My Profile<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="lecturer.php?user=lecturer"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="examinationOfficer.php?user=examination_officer"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Profile Settings</li>
       </ol>
     </section>
@@ -67,7 +93,7 @@
 					  <img class="profile-user-img img-responsive img-circle" src="dist/img/user_kijo.png" alt="User profile picture">
 
 					  <h3 class="profile-username text-center"><?php echo getField('fname')." ".getField('sname');?></h3>
-					  <p class="text-muted text-center">Lecturer</p>
+					  <p class="text-muted text-center">Examination Officer</p>
 
 					  <ul class="list-group list-group-unbordered">
 						<li class="list-group-item">
@@ -97,55 +123,52 @@
 							<form class="form-horizontal" method="post" enctype="multipart/form-data">
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">E-mail:</label>
-								<div class="col-sm-10 lemail-err">
-								  <input type="email" name="linputEmail" class="form-control linputEmail" value="<?php echo getField('email_address');?>">
-								  <span class="help-block lemail-err-sms"></span>
+								<div class="col-sm-10 eemail-err">
+								  <input type="email" name="einputEmail" class="form-control einputEmail" value="<?php echo getField('email_address');?>">
+								  <span class="help-block eemail-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Phone No:</label>
-								<div class="col-sm-10 lphone-err">
-								  <input type="text" name="linputPhone" class="form-control linputPhone" value="<?php echo getField('phone_no');?>">
-								  <span class="help-block lphone-err-sms"></span>
+								<div class="col-sm-10 ephone-err">
+								  <input type="text" name="einputPhone" class="form-control einputPhone" value="<?php echo getField('phone_no');?>">
+								  <span class="help-block ephone-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Username:</label>
-								<div class="col-sm-10 lusername-err">
-								  <input type="text" name="linputUsername" class="form-control linputUsername" value="<?php echo getField('username');?>">
-								  <span class="help-block lusername-err-sms"></span>
+								<div class="col-sm-10 eusername-err">
+								  <input type="text" name="einputUsername" class="form-control einputUsername" value="<?php echo getField('username');?>">
+								  <span class="help-block eusername-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Password</label>
-								<div class="col-sm-10 lpass-err">
-								  <input type="password" name="linputPassword" class="form-control linputPassword">
-								  <span class="help-block lpass-err-sms"></span>
+								<div class="col-sm-10 epass-err">
+								  <input type="password" name="einputPassword" class="form-control einputPassword">
+								  <span class="help-block epass-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Retype Password</label>
-								<div class="col-sm-10 lrepass-err">
-								  <input type="password" class="form-control linputRepassword">
-								  <span class="help-block lrepass-err-sms"></span>
+								<div class="col-sm-10 erepass-err">
+								  <input type="password" class="form-control einputRepassword">
+								  <span class="help-block erepass-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-								  <button type="submit" name="sv_lec" class="btn btn-primary sv_lec">Save Changes</button>
+								  <button type="submit" name="sv_examMaster" class="btn btn-primary sv_examMaster">Save Changes</button>
 								</div>
 							  </div>
 							</form>
-						  </div>
-						  <!-- /.tab-pane --> 
+						  </div> 
 					</div>
 				</div>
 			</div>
 		</div>
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
 
 <?php 
 	include('footer/footer.php');

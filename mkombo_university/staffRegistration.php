@@ -1,3 +1,12 @@
+<?php 
+	include('config/config.php');
+	include('config/functions.php');
+	include('data/staffRegData.php');
+	error_reporting("E_NOTICE");
+	if($_GET['response'] == 'fail'){
+		$response = "Sorry ,something went wrong. Please try again.";
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +37,19 @@
   <![endif]-->
 </head>
 <body class="hold-transition register-page">
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<?php 
+		if(isset($response)){
+			echo "<div class='callout callout-danger displaySms'>
+					<h4>Error !</h4>
+					<p>".$response."</p>
+				</div>";
+		}?>
+	</div>
+	<div class="col-md-3"></div>
+</div>
 
 	<section class="content-header" style="margin-left:20%;">
 	  <h1>
@@ -77,11 +99,11 @@
 					</div>
 				  <div class="form-group">
 					<label>
-					  <input type="radio" name="gender" class="minimal" checked>
+					  <input type="radio" name="gender" class="minimal" checked value="Male">
 					  Male
 					</label>
 					<label>
-					  <input type="radio" name="gender" class="minimal">
+					  <input type="radio" name="gender" class="minimal" value="Female">
 					  Female
 					</label>
 				  </div>
@@ -122,12 +144,12 @@
 				  </div>
 				  <div class="form-group">
 					<label>Marital Status:</label><br>
-					<select name="title" class="form-control select2">
+					<select name="marital_status" class="form-control select2">
 					  <option selected="selected">Single</option>
 					  <option>Married</option>
 					</select>
 				  </div>
-				  <div class="form-group">
+				 <!--<div class="form-group">
 					<label>Module Title:</label>
 					<div class="input-group module-err">
 					  <div class="input-group-addon">
@@ -136,7 +158,7 @@
 					  <input type="text" name="module_title" class="form-control module">
 					</div>
 					<span class="help-block module-err-sms err"></span>
-				  </div>
+				  </div>-->
 					<div class="form-group">
 						<label>Username:</label>
 						<div class="input-group username-err">
@@ -197,6 +219,8 @@
 
 <script>
   $(function () {
+	//message
+	$('.displaySms').delay(4000).fadeOut(); 
     //Initialize Select2 Elements
     $(".select2").select2();
 

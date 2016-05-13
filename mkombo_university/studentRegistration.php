@@ -1,7 +1,10 @@
-
 <?php 
-	if(isset($_POST['fname']) || isset($_POST['index_no_olevel'])){
-		echo $_POST['fname']." ".$_POST['index_no_olevel'];
+	include('config/config.php');
+	include('config/functions.php');
+	include('data/studentRegData.php');
+	error_reporting("E_NOTICE");
+	if($_GET['response'] == 'fail'){
+		$response = "Sorry ,something went wrong. Please try again.";
 	}
 ?>
 <!DOCTYPE html>
@@ -35,6 +38,19 @@
 
 </head>
 <body class="hold-transition register-page">
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<?php 
+		if(isset($response)){
+			echo "<div class='callout callout-danger displaySms'>
+					<h4>Error !</h4>
+					<p>".$response."</p>
+				</div>";
+		}?>
+	</div>
+	<div class="col-md-3"></div>
+</div>
 <div class="register-box-student">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -91,11 +107,11 @@
 							  </div>
 							  <div class="form-group">
 								<label>
-								  <input type="radio" name="gender" class="minimal" checked>
+								  <input type="radio" name="gender" value="Male" class="minimal" checked>
 								  Male
 								</label>
 								<label>
-								  <input type="radio" name="gender" class="minimal">
+								  <input type="radio" name="gender" value="Female" class="minimal">
 								  Female
 								</label>
 							  </div>
@@ -326,7 +342,7 @@
 							  </div>
 							  <div class="form-group">
 								<label>Subjects Taken</label><br>
-								<select name="subject_taken" class="form-control select2" multiple="multiple" data-placeholder="Select a Subject" style="width:100%;">
+								<select name="subject_taken[]" class="form-control select2" multiple="multiple" data-placeholder="Select a Subject" style="width:100%;">
 								  <option>Physics</option>
 								  <option>Chemistry</option>
 								  <option>Biology</option>
@@ -524,7 +540,8 @@
 
 <script>
   $(function () {
-	  
+	//message
+	$('.displaySms').delay(4000).fadeOut();  
     //Initialize Select2 Elements
     $(".select2").select2();
 

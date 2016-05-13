@@ -2,7 +2,7 @@
 	include('config/config.php');
 	include('config/functions.php');
 	include('header/head.php');
-	include('header/asideMenuLecturer.php');
+	include('header/asideMenuTimeTableMaster.php');
 	include('data/profileData.php');
 	
 	if(isset($_GET['response'])){
@@ -13,15 +13,26 @@
 		}
 	}
 ?>
-  <aside class="main-sidebar">
+<aside class="main-sidebar">
+
     <section class="sidebar">
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">USER MANAGEMENT</li>
-        <li><a href="lecturer.php?user=lecturer"><i class="fa fa-files-o"></i> <span>Student Marks</span> </a></li>
-		<!--end of student marks-->
-		<li class="active"><a href="lecturerProfile.php?user=lecturer"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
+        <li><a href="timeTableMaster.php?user=time_table_master"><i class="fa fa-th"></i> <span>Venue Management</span> </a></li>
+		<li class="treeview">
+          <a href="#"><i class="fa fa-table"></i> <span>Class Time Table</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+			<li><a href="timeMasterComp.php?user=time_table_master"><i class="fa fa-book"></i> <span>Computer Eng</span> </a></li>
+			<li><a href="timeMasterCivil.php?user=time_table_master"><i class="fa fa-book"></i> <span>Civil Eng</span> </a></li>
+			<li><a href="timeMasterTele.php?user=time_table_master"><i class="fa fa-book"></i> <span>Telecommunication Eng</span> </a></li>
+			<li><a href="timeMasterMech.php?user=time_table_master"><i class="fa fa-book"></i> <span>Mechanical Eng</span> </a></li>
+			<li><a href="timeMasterEle.php?user=time_table_master"><i class="fa fa-book"></i> <span>Electrical Eng</span> </a></li>
+          </ul>
+        </li>
+		<!--end of class time table-->
+		<li class="active"><a href="timeMasterProfile.php?user=time_table_master"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -33,7 +44,7 @@
     <section class="content-header">
       <h1>My Profile<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="lecturer.php?user=lecturer"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="timeTableMaster.php?user=time_table_master"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Profile Settings</li>
       </ol>
     </section>
@@ -67,7 +78,7 @@
 					  <img class="profile-user-img img-responsive img-circle" src="dist/img/user_kijo.png" alt="User profile picture">
 
 					  <h3 class="profile-username text-center"><?php echo getField('fname')." ".getField('sname');?></h3>
-					  <p class="text-muted text-center">Lecturer</p>
+					  <p class="text-muted text-center">Time Table Master</p>
 
 					  <ul class="list-group list-group-unbordered">
 						<li class="list-group-item">
@@ -97,42 +108,42 @@
 							<form class="form-horizontal" method="post" enctype="multipart/form-data">
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">E-mail:</label>
-								<div class="col-sm-10 lemail-err">
-								  <input type="email" name="linputEmail" class="form-control linputEmail" value="<?php echo getField('email_address');?>">
-								  <span class="help-block lemail-err-sms"></span>
+								<div class="col-sm-10 temail-err">
+								  <input type="email" name="tinputEmail" class="form-control tinputEmail" value="<?php echo getField('email_address');?>">
+								  <span class="help-block temail-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Phone No:</label>
-								<div class="col-sm-10 lphone-err">
-								  <input type="text" name="linputPhone" class="form-control linputPhone" value="<?php echo getField('phone_no');?>">
-								  <span class="help-block lphone-err-sms"></span>
+								<div class="col-sm-10 tphone-err">
+								  <input type="text" name="tinputPhone" class="form-control tinputPhone" value="<?php echo getField('phone_no');?>">
+								  <span class="help-block tphone-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Username:</label>
-								<div class="col-sm-10 lusername-err">
-								  <input type="text" name="linputUsername" class="form-control linputUsername" value="<?php echo getField('username');?>">
-								  <span class="help-block lusername-err-sms"></span>
+								<div class="col-sm-10 tusername-err">
+								  <input type="text" name="tinputUsername" class="form-control tinputUsername" value="<?php echo getField('username');?>">
+								  <span class="help-block tusername-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Password</label>
-								<div class="col-sm-10 lpass-err">
-								  <input type="password" name="linputPassword" class="form-control linputPassword">
-								  <span class="help-block lpass-err-sms"></span>
+								<div class="col-sm-10 tpass-err">
+								  <input type="password" name="tinputPassword" class="form-control tinputPassword">
+								  <span class="help-block tpass-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Retype Password</label>
-								<div class="col-sm-10 lrepass-err">
-								  <input type="password" class="form-control linputRepassword">
-								  <span class="help-block lrepass-err-sms"></span>
+								<div class="col-sm-10 trepass-err">
+								  <input type="password" class="form-control tinputRepassword">
+								  <span class="help-block trepass-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-								  <button type="submit" name="sv_lec" class="btn btn-primary sv_lec">Save Changes</button>
+								  <button type="submit" name="sv_ttmaster" class="btn btn-primary sv_ttmaster">Save Changes</button>
 								</div>
 							  </div>
 							</form>
@@ -146,7 +157,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
 <?php 
 	include('footer/footer.php');
 	include('footer/help.php');

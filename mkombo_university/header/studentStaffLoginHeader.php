@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="dist/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="dist/css/ionicons.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="plugins/select2/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/mkombo.min.css">
 

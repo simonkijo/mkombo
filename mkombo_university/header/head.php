@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="dist/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="dist/css/ionicons.min.css">
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="plugins/timepicker/bootstrap-timepicker.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="plugins/select2/select2.min.css">
   <!-- Theme style -->
