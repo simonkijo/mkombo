@@ -337,9 +337,53 @@ $('.sv_adm').bind('click',function(){
 		return false;
 	}
 });
-$('.inputEmail,.inputPhone,.inputMarital,.inputHome,.inputPassword,.inputRepassword,.inputBankName,.inputBankBranch,.inputAccountNo,.inputSponsorName,.inputSponsorPhone,.inputSponsorEmail,.tinputEmail,.tinputPhone,.tinputUsername,.tinputPassword,.tinputRepassword,.einputEmail,.einputPhone,.einputUsername,.einputPassword,.einputRepassword,.linputEmail,.linputPhone,.linputUsername,.linputPassword,.linputRepassword,.ainputEmail,.ainputPhone,.ainputUsername,.ainputPassword,.ainputRepassword').keyup(function(){
-	$('.email-err,.phone-err,.marital-err,.home-err,.pass-err,.repass-err,.bname-err,.bbranch-err,.accountno-err,.sname-err,.sphone-err,.semail-err,.temail-err,.tphone-err,.tusername-err,.tpass-err,.trepass-err,.eemail-err,.ephone-err,.eusername-err,.epass-err,.erepass-err,.lemail-err,.lphone-err,.lusername-err,.lpass-err,.lrepass-err,.aemail-err,.aphone-err,.ausername-err,.apass-err,.arepass-err').removeClass('has-error');
-	$('.email-err-sms,.phone-err-sms,.marital-err-sms,.home-err-sms,.pass-err-sms,.repass-err-sms,.bname-err-sms,.bbranch-err-sms,.accountno-err-sms,.sname-err-sms,.sphone-err-sms,.semail-err-sms,.temail-err-sms,.tphone-err-sms,.tusername-err-sms,.tpass-err-sms,.trepass-err-sms,.eemail-err-sms,.ephone-err-sms,.eusername-err-sms,.epass-err-sms,.erepass-err-sms,.lemail-err-sms,.lphone-err-sms,.lusername-err-sms,.lpass-err-sms,.lrepass-err-sms,.aemail-err-sms,.aphone-err-sms,.ausername-err-sms,.apass-err-sms,.arepass-err-sms').text('');
+//admin profile validation
+$('.sv_ad_2').bind('click',function(){
+	var fname = $('.inputFname').val();
+	var mname = $('.inputMname').val();
+	var sname = $('.inputSname').val();
+	var nationality = $('.inputNationality').val();
+	
+	if(fname == ""){
+		$('.pfname-err').addClass('has-error');
+		$('.pfname-err-sms').text('This field is required');
+		return false;
+	}else if(allLetter(fname) == false){
+		$('.pfname-err').addClass('has-error');
+		$('.pfname-err-sms').text('Letters only and no space.');
+		return false;
+	}
+	if(mname == ""){
+		$('.pmname-err').addClass('has-error');
+		$('.pmname-err-sms').text('This field is required');
+		return false;
+	}else if(allLetter(mname) == false){
+		$('.pmname-err').addClass('has-error');
+		$('.pmname-err-sms').text('Letters only and no space.');
+		return false;
+	}
+	if(sname == ""){
+		$('.psname-err').addClass('has-error');
+		$('.psname-err-sms').text('This field is required');
+		return false;
+	}else if(allLetter(sname) == false){
+		$('.psname-err').addClass('has-error');
+		$('.psname-err-sms').text('Letters only and no space.');
+		return false;
+	}
+	if(nationality == ""){
+		$('.pnationality-err').addClass('has-error');
+		$('.pnationality-err-sms').text('This field is required');
+		return false;
+	}else if(nationalityValidation(nationality) == false){
+		$('.pnationality-err').addClass('has-error');
+		$('.pnationality-err-sms').text('Letters Only');
+		return false;
+	}
+});
+$('.inputEmail,.inputPhone,.inputMarital,.inputHome,.inputPassword,.inputRepassword,.inputBankName,.inputBankBranch,.inputAccountNo,.inputSponsorName,.inputSponsorPhone,.inputSponsorEmail,.tinputEmail,.tinputPhone,.tinputUsername,.tinputPassword,.tinputRepassword,.einputEmail,.einputPhone,.einputUsername,.einputPassword,.einputRepassword,.linputEmail,.linputPhone,.linputUsername,.linputPassword,.linputRepassword,.ainputEmail,.ainputPhone,.ainputUsername,.ainputPassword,.ainputRepassword,.inputFname,.inputMname,.inputSname,.inputNationality').keyup(function(){
+	$('.email-err,.phone-err,.marital-err,.home-err,.pass-err,.repass-err,.bname-err,.bbranch-err,.accountno-err,.sname-err,.sphone-err,.semail-err,.temail-err,.tphone-err,.tusername-err,.tpass-err,.trepass-err,.eemail-err,.ephone-err,.eusername-err,.epass-err,.erepass-err,.lemail-err,.lphone-err,.lusername-err,.lpass-err,.lrepass-err,.aemail-err,.aphone-err,.ausername-err,.apass-err,.arepass-err,.pfname-err,.pmname-err,.psname-err,.pnationality-err').removeClass('has-error');
+	$('.email-err-sms,.phone-err-sms,.marital-err-sms,.home-err-sms,.pass-err-sms,.repass-err-sms,.bname-err-sms,.bbranch-err-sms,.accountno-err-sms,.sname-err-sms,.sphone-err-sms,.semail-err-sms,.temail-err-sms,.tphone-err-sms,.tusername-err-sms,.tpass-err-sms,.trepass-err-sms,.eemail-err-sms,.ephone-err-sms,.eusername-err-sms,.epass-err-sms,.erepass-err-sms,.lemail-err-sms,.lphone-err-sms,.lusername-err-sms,.lpass-err-sms,.lrepass-err-sms,.aemail-err-sms,.aphone-err-sms,.ausername-err-sms,.apass-err-sms,.arepass-err-sms,.pfname-err-sms,.pmname-err-sms,.psname-err-sms,.pnationality-err-sms').text('');
 });
 //for checking account number contains allnumeric.
 	function accountNoValidation(parameter){    

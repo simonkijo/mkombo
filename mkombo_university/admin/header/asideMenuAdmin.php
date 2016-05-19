@@ -14,16 +14,16 @@
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="dist/img/user_kijo.png" class="img-circle" alt="User Image">
+                <img src="../dist/img/user_kijo.png" class="img-circle" alt="User Image">
 
-                <p><?php echo getField('sname').", ".getField('fname');?><small>Time Table Master</small></p>
+                <p><?php echo getField('sname').", ".getField('fname');?><small>System Administrator</small></p>
               </li>
               <!-- Menu Body -->
 
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="timeMasterProfile.php?user=time_table_master" class="btn btn-default btn-flat">Profile</a>
+                  <a href="adminProfile.php?user=admin" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
@@ -36,5 +36,5 @@
         </ul>
       </div>
     </nav>
-  </header>
-<!-- Left side column. contains the logo and sidebar -->
+  </header> 
+ <!-- Left side column. contains the logo and sidebar -->

@@ -50,7 +50,7 @@
 		$st_regno = regGenerator();
 		
 		if(checkEmpty()){
-			$query_stp_info = "INSERT INTO `mkombo_university`.`student` VALUES('".$st_regno."','$fname','$mname','$sname','$gender','$marital_status','$nationality','$birth_country','$birth_date','".hashPassword($password)."','$phone_no','$email_address','$home_place','Not Approved')";
+			$query_stp_info = "INSERT INTO `mkombo_university`.`student` VALUES('".$st_regno."','$fname','$mname','$sname','$gender','$marital_status','$nationality','$birth_country','$birth_date','".hashPassword($password)."','$phone_no','$email_address','$home_place','Not Approved','')";
 			$query_p_info = "INSERT INTO `mkombo_university`.`parent` VALUES('$fullname','$phone_no_p','$email_p','$physical_location','".$st_regno."')";
 			$query_bank_info = "INSERT INTO `mkombo_university`.`bank_account` VALUES('$bank_name','$bank_branch','$account_no','".$st_regno."')";
 			$query_ac_info = "INSERT INTO `mkombo_university`.`academic_info` VALUES('$index_no_olevel','$index_no_alevel','$school_name_olevel','$school_name_alevel','$sc_location_olevel','$sc_location_alevel','$cert_olevel','$cert_alevel','$completion_yr_olevel','$completion_yr_alevel','".$subjects."','$subject_combination','".$st_regno."')";

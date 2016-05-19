@@ -14,7 +14,7 @@
 		$hash_pass = hashPassword($pass);
 		
 		if(!empty($username) && !empty($pass) && !empty($title)){
-			$query = "SELECT `username` FROM `mkombo_university`.`$title` WHERE `username`='".$username."' AND `password`='".$hash_pass."'";
+			$query = "SELECT `username` FROM `mkombo_university`.`$title` WHERE `username`='".mysql_real_escape_string($username)."' AND `password`='".mysql_real_escape_string($hash_pass)."'";
 			$query_run = mysql_query($query);
 			$num_row = mysql_num_rows($query_run);
 			if($num_row == 0){
@@ -23,17 +23,15 @@
 				$usern = mysql_result($query_run,0,'username');
 				$_SESSION['username'] = $usern;
 				if($title == "lecturer"){
-					$lec = "lecturer";
-					header('Location:lecturer.php?user='.$lec);
+					header('Location:lecturer.php?user=lecturer');
 				}else if($title == "admission_officer"){
-					$adm = "admission_officer";
-					header('Location:admissionOfficer.php?user='.$adm);
+					header('Location:admissionOfficer.php?user=admission_officer');
 				}else if($title == "examination_officer"){
-					$exam = "examination_officer";
-					header('Location:examinationOfficer.php?user='.$exam);
+					header('Location:examinationOfficer.php?user=examination_officer&class=computer');
 				}else if($title == "time_table_master"){
-					$tm = "time_table_master";
-					header('Location:timeTableMaster.php?user='.$tm);
+					header('Location:timeTableMaster.php?user=time_table_master');
+				}else if($title == "academic_officer"){
+					header('Location:academicOfficer.php?user=academic_officer');
 				}
 			}
 		}
@@ -87,9 +85,10 @@
 		<label>Login As</label><br>
 		<select name="title" class="form-control select2">
 		  <option value="lecturer">Lecturer</option>
-		  <option value="examination_officer">Examination officer</option>
+		  <option value="examination_officer">Examination Officer</option>
 		  <option value="time_table_master">Time table master</option>
-		  <option value="admission_officer">Admission officer</option>
+		  <option value="admission_officer">Admission Officer</option>
+		  <option value="academic_officer">Academic Officer</option>
 		</select>
 	  </div>
       <div class="row">

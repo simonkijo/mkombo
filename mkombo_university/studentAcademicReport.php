@@ -3,6 +3,12 @@
 	include('config/functions.php');
 	include('header/head.php');
 	include('header/asideMenuStudent.php');
+	
+	if(logged_in()){
+		
+	}else{
+		header('Location: studentLogin.php');
+	}
 ?>
 <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">

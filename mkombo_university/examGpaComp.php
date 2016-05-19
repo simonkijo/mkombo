@@ -3,6 +3,12 @@
 	include('config/functions.php');
 	include('header/head.php');
 	include('header/asideMenuExamOfficer.php');
+	
+	if(logged_in()){
+		
+	}else{
+		header('Location: staffLogin.php');
+	}
 ?>
 <aside class="main-sidebar">
 

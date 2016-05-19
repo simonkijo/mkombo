@@ -1,8 +1,16 @@
 <?php
+	error_reporting('E_NOTICE');
 	include('config/config.php');
 	include('config/functions.php');
 	include('header/head.php');
 	include('header/asideMenuTimeTableMaster.php');
+	include('data/venueData.php');
+	
+	if(logged_in()){
+		
+	}else{
+		header('Location: staffLogin.php');
+	}
 ?>
 <aside class="main-sidebar">
 
@@ -15,11 +23,11 @@
 		<li class="treeview">
           <a href="#"><i class="fa fa-table"></i> <span>Class Time Table</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-			<li><a href="timeMasterComp.php?user=time_table_master"><i class="fa fa-book"></i> <span>Computer Eng</span> </a></li>
-			<li><a href="timeMasterCivil.php?user=time_table_master"><i class="fa fa-book"></i> <span>Civil Eng</span> </a></li>
-			<li><a href="timeMasterTele.php?user=time_table_master"><i class="fa fa-book"></i> <span>Telecommunication Eng</span> </a></li>
-			<li><a href="timeMasterMech.php?user=time_table_master"><i class="fa fa-book"></i> <span>Mechanical Eng</span> </a></li>
-			<li><a href="timeMasterEle.php?user=time_table_master"><i class="fa fa-book"></i> <span>Electrical Eng</span> </a></li>
+			<li><a href="timeMasterComp.php?user=time_table_master&class=computer"><i class="fa fa-book"></i> <span>Computer Eng</span> </a></li>
+			<li><a href="timeMasterCivil.php?user=time_table_master&class=civil"><i class="fa fa-book"></i> <span>Civil Eng</span> </a></li>
+			<li><a href="timeMasterTele.php?user=time_table_master&class=telecom"><i class="fa fa-book"></i> <span>Telecommunication Eng</span> </a></li>
+			<li><a href="timeMasterMech.php?user=time_table_master&class=mechanical"><i class="fa fa-book"></i> <span>Mechanical Eng</span> </a></li>
+			<li><a href="timeMasterEle.php?user=time_table_master&class=electrical"><i class="fa fa-book"></i> <span>Electrical Eng</span> </a></li>
           </ul>
         </li>
 		<!--end of class time table-->
@@ -42,6 +50,32 @@
 
     <!-- Main content -->
     <section class="content">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			<?php 
+			if(isset($success)){
+				if($success[1] == 'true'){
+					if($success[0] > 1){
+						$s = 's'; $are = 'are'; $the = '';
+					}else{
+						$s = ''; $are = 'is'; $the = 'A';
+					}
+					echo "<div class='callout callout-success displaySms'>
+							<h4>Successfully !</h4>
+							<p>".$the." venue".$s." ".$are." successful added</p>
+						</div>";
+				}else if($success[1] == 'false'){
+					echo "<div class='callout callout-danger displaySms'>
+						<h4>ERROR !</h4>
+						<p>Sorry something went wrong, try again.</p>
+					</div>";
+				}	
+			}
+			?>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
 		<div class="box box-primary box-height" style="margin-bottom:0;">
 			<form method="post" enctype="multipart/form-data">
 			<div class="row" style="margin:2% auto;">
@@ -49,7 +83,7 @@
 					<div class="form-group">
 						<label>Venue Title:</label>
 						<div class="form-group another_input">
-						  <input type="text" class="form-control" name="venue_1"><br>
+						  <input type="text" class="form-control" name="venue[]"><br>
 						</div>
 					</div>
 				</div>
@@ -64,7 +98,7 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<label></label><br>
-						<button type="submit" class="btn btn-primary">Save</button>
+						<button type="submit" name="venue_btn" class="btn btn-primary">Save</button>
 					</div>
 				</div>
 			</div>

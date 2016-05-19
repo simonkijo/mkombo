@@ -1,11 +1,12 @@
 <?php 
+	error_reporting('E_NOTICE');
 	ob_start();
 	session_start();
 	//get any field from logged in user.
 	function getField($field){
 		if(isset($_GET['user'])){
 			$user = $_GET['user'];
-			$staff = Array("lecturer","admission_officer","examination_officer","time_table_master");
+			$staff = Array("lecturer","admission_officer","examination_officer","time_table_master","academic_officer","admin");
 			if(in_array($user,$staff)){
 				$query = "SELECT `$field` FROM `mkombo_university`.`$user` WHERE `username`='".$_SESSION['username']."'";
 				if($query_run = @mysql_query($query)){
@@ -89,6 +90,12 @@
 			return true;
 		}else{
 			return false;
+		}
+	}
+	//for looping data
+	function looping($m){
+		foreach($m as $mod){
+			return $mod;
 		}
 	}
 ?>

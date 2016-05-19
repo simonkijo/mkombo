@@ -2,9 +2,11 @@
 	include('config/config.php');
 	include('config/functions.php');
 	include('data/staffRegData.php');
-	error_reporting("E_NOTICE");
-	if($_GET['response'] == 'fail'){
-		$response = "Sorry ,something went wrong. Please try again.";
+	//error_reporting("E_NOTICE");
+	if(isset($_GET['response'])){
+		if($_GET['response'] == 'fail'){
+			$response = "Sorry ,something went wrong. Please try again.";
+		}
 	}
 ?>
 <!DOCTYPE html>
@@ -45,6 +47,12 @@
 			echo "<div class='callout callout-danger displaySms'>
 					<h4>Error !</h4>
 					<p>".$response."</p>
+				</div>";
+		}
+		if(isset($err)){
+			echo "<div class='callout callout-danger displaySms'>
+					<h4>Error !</h4>
+					<p>".$err."</p>
 				</div>";
 		}?>
 	</div>
@@ -111,9 +119,10 @@
 					<label>Title:</label><br>
 					<select name="title" class="form-control select2">
 					  <option selected="selected" value="lecturer">Lecturer</option>
-					  <option value="examination_officer">Examination officer</option>
+					  <option value="examination_officer">Examination Officer</option>
 					  <option value="time_table_master">Time table master</option>
-					  <option value="admission_officer">Admission officer</option>
+					  <option value="admission_officer">Admission Officer</option>
+					  <option value="academic_officer">Academic Officer</option>
 					</select>
 				  </div>
 				  <div class="form-group">

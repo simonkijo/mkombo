@@ -5,6 +5,12 @@
 	include('header/asideMenuLecturer.php');
 	include('data/profileData.php');
 	
+	if(logged_in()){
+		
+	}else{
+		header('Location: staffLogin.php');
+	}
+	
 	if(isset($_GET['response'])){
 		if($_GET['response'] == 'success'){
 			$success = "The changes have been successful saved.";

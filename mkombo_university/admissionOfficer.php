@@ -4,7 +4,11 @@
 	include('header/head.php');
 	include('header/asideMenuAdmissionOfficer.php');
 	
-	
+	if(logged_in()){
+		
+	}else{
+		header('Location: staffLogin.php');
+	}
 ?>
 <aside class="main-sidebar">
 

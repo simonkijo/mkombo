@@ -3,6 +3,13 @@
 	include('config/functions.php');
 	include('header/head.php');
 	include('header/asideMenuExamOfficer.php');
+	include('data/moduleData.php');
+	
+	if(logged_in()){
+		
+	}else{
+		header('Location: staffLogin.php');
+	}
 ?>
 <aside class="main-sidebar">
 
@@ -17,11 +24,11 @@
             <li class="active">
 				<a href="#"><i class="fa fa-book"></i> <span>Bachelor Degree</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li class="active"><a href="examinationOfficer.php?user=examination_officer"><i class="fa fa-circle-o"></i> <span>Computer Eng</span> </a></li>
-					<li><a href="examOfficerCivil.php?user=examination_officer"><i class="fa fa-circle-o"></i> <span>Civil Eng</span> </a></li>
-					<li><a href="examOfficerTele.php?user=examination_officer"><i class="fa fa-circle-o"></i> <span>Telecommunication Eng</span> </a></li>
-					<li><a href="examOfficerMech.php?user=examination_officer"><i class="fa fa-circle-o"></i> <span>Mechanical Eng</span> </a></li>
-					<li><a href="examOfficerEle.php?user=examination_officer"><i class="fa fa-circle-o"></i> <span>Electrical Eng</span> </a></li>
+					<li class="active"><a href="examinationOfficer.php?user=examination_officer&class=computer"><i class="fa fa-circle-o"></i> <span>Computer Eng</span> </a></li>
+					<li><a href="examOfficerCivil.php?user=examination_officer&class=civil"><i class="fa fa-circle-o"></i> <span>Civil Eng</span> </a></li>
+					<li><a href="examOfficerTele.php?user=examination_officer&class=telecom"><i class="fa fa-circle-o"></i> <span>Telecommunication Eng</span> </a></li>
+					<li><a href="examOfficerMech.php?user=examination_officer&class=mechanical"><i class="fa fa-circle-o"></i> <span>Mechanical Eng</span> </a></li>
+					<li><a href="examOfficerEle.php?user=examination_officer&class=electrical"><i class="fa fa-circle-o"></i> <span>Electrical Eng</span> </a></li>
 				</ul>
 			</li>
           </ul>
@@ -50,7 +57,7 @@
     <section class="content-header">
       <h1>Subjects Catalogue<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="examinationOfficer.php?user=examination_officer"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="examinationOfficer.php?user=examination_officer&class=computer"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li>Bachelor Degree</li>
         <li class="active">Computer Eng</li>
       </ol>
@@ -58,6 +65,32 @@
 
     <!-- Main content -->
     <section class="content">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			<?php 
+			if(isset($md_success)){
+				if($md_success[1] == 'success'){
+					if($md_success[0] > 1){
+						$s = 's'; $are = 'are'; $the = '';
+					}else{
+						$s = ''; $are = 'is'; $the = 'A';
+					}
+					echo "<div class='callout callout-success displaySms'>
+							<h4>Successfully !</h4>
+							<p>".$the." subject".$s." ".$are." successful added</p>
+						</div>";
+				}else if($md_success[1] == 'fail'){
+					echo "<div class='callout callout-danger displaySms'>
+						<h4>ERROR !</h4>
+						<p>Sorry something went wrong, try again.</p>
+					</div>";
+				}	
+			}
+			?>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
 		<div class="box box-primary box-height" style="margin-bottom:0;">
 			<form method="post" enctype="multipart/form-data">
 			<div class="row" style="margin:2% auto;">
@@ -65,7 +98,8 @@
 					<div class="form-group">
 						<label>Year:</label><br>
 						<select name="year" class="form-control select2"> 
-						  <option selected="selected" value="first">First</option>
+						  <option selected="selected" value="">Select a year</option>
+						  <option value="first">First</option>
 						  <option value="second">Second</option>
 						  <option value="third">Third</option>
 						  <option value="forth">Forth</option>
@@ -76,7 +110,8 @@
 					<div class="form-group">
 						<label>Semester:</label><br>
 						<select name="semester" class="form-control select2">
-						  <option selected="selected" value="first">First</option>
+						  <option selected="selected" value="">Select a semester</option>
+						  <option value="first">First</option>
 						  <option value="second">Second</option>
 						</select>
 					</div>
@@ -87,7 +122,7 @@
 					<div class="form-group">
 						<label>Code:</label>
 						<div class="form-group code_">
-						  <input type="text" class="form-control" name="code_1"><br>
+						  <input type="text" class="form-control" name="code[]"><br>
 						</div>
 					</div>
 				</div>
@@ -95,7 +130,7 @@
 					<div class="form-group">
 						<label>Module Title:</label>
 						<div class="form-group module_">
-						  <input type="text" class="form-control" name="module_title_1"><br>
+						  <input type="text" class="form-control" name="module_title[]"><br>
 						</div>
 					</div>
 				</div>
@@ -103,7 +138,7 @@
 					<div class="form-group">
 						<label>Credit:</label>
 						<div class="form-group credit_">
-						  <input type="text" class="form-control" name="credit_1"><br>
+						  <input type="text" class="form-control" name="credit[]"><br>
 						</div>
 					</div>
 				</div>
@@ -120,7 +155,7 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<label></label><br>
-						<button type="submit" class="btn btn-primary">Save</button>
+						<button type="submit" name="sv_modules" class="btn btn-primary">Save</button>
 					</div>
 				</div>
 			</div>

@@ -3,6 +3,13 @@
 	include('config/functions.php');
 	include('header/head.php');
 	include('header/asideMenuStudent.php');
+	//include('data/studentTimeTable.php');
+	
+	if(logged_in()){
+		
+	}else{
+		header('Location: studentLogin.php');
+	}
 ?>
 <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
@@ -44,8 +51,9 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<label>Year:</label><br>
-						<select name="year" class="form-control select2"> 
-						  <option selected="selected" value="first">First</option>
+						<select name="year" class="form-control select2">
+						  <option selected="selected" value="">Select a Year</option>
+						  <option value="first">First</option>
 						  <option value="second">Second</option>
 						  <option value="third">Third</option>
 						  <option value="forth">Forth</option>
@@ -56,7 +64,8 @@
 					<div class="form-group">
 						<label>Semester:</label><br>
 						<select name="semester" class="form-control select2">
-						  <option selected="selected" value="first">First</option>
+						  <option selected="selected" value="">Select a Semester</option>
+						  <option value="first">First</option>
 						  <option value="second">Second</option>
 						</select>
 					</div>
@@ -64,13 +73,60 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<label></label><br>
-						<button type="submit" class="btn btn-primary">Show</button>
+						<button type="submit" name="s_time" class="btn btn-primary">Show</button>
 					</div>
 				</div>
 				</form>
 			</div>
+<?php
+	if(isset($_POST['s_time'])){
+		$year = $_POST['year'];
+		$semister = $_POST['semester'];
+		$course = getField('course');
+		//monday.
+		$query = "SELECT `module`,`time`,`v_title` FROM `time_table` WHERE `course`='".$course."' AND `year`='".$year."' AND `semister`='".$semister."' AND `day`='Monday'";
+		$query_run = mysql_query($query);
+		$ct = mysql_num_rows($query_run);
+		while($row = mysql_fetch_array($query_run)){
+			$modules_mon[] = $row['module'];
+			$time_mon[] = $row['time'];
+			$v_title_mon[] = $row['v_title'];
+		}
+		//tuesday.
+		$query = "SELECT `module`,`time`,`v_title` FROM `time_table` WHERE `course`='".$course."' AND `year`='".$year."' AND `semister`='".$semister."' AND `day`='Tuesday'";
+		$query_run = mysql_query($query);
+		$ct = mysql_num_rows($query_run);
+		while($row = mysql_fetch_array($query_run)){
+			$modules_tues[] = $row['module'];
+			$v_title_tues[] = $row['v_title'];
+		}
+		//wednesday.
+		$query = "SELECT `module`,`time`,`v_title` FROM `time_table` WHERE `course`='".$course."' AND `year`='".$year."' AND `semister`='".$semister."' AND `day`='Wednesday'";
+		$query_run = mysql_query($query);
+		$ct = mysql_num_rows($query_run);
+		while($row = mysql_fetch_array($query_run)){
+			$modules_wed[] = $row['module'];
+			$v_title_wed[] = $row['v_title'];
+		}
+		//Thursday.
+		$query = "SELECT `module`,`time`,`v_title` FROM `time_table` WHERE `course`='".$course."' AND `year`='".$year."' AND `semister`='".$semister."' AND `day`='Thursday'";
+		$query_run = mysql_query($query);
+		$ct = mysql_num_rows($query_run);
+		while($row = mysql_fetch_array($query_run)){
+			$modules_thur[] = $row['module'];
+			$v_title_thur[] = $row['v_title'];
+		}
+		//Friday.
+		$query = "SELECT `module`,`time`,`v_title` FROM `time_table` WHERE `course`='".$course."' AND `year`='".$year."' AND `semister`='".$semister."' AND `day`='Friday'";
+		$query_run = mysql_query($query);
+		$ct = mysql_num_rows($query_run);
+		while($row = mysql_fetch_array($query_run)){
+			$modules_fri[] = $row['module'];
+			$v_title_fri[] = $row['v_title'];
+		}
+?>
 			<div class="row">
-				<div class="col-md-11">
+				<div class="col-md-12">
 					<div class="box-body">
 						<table id="time_table" class="table table-bordered table-hover">
 							<thead>
@@ -84,30 +140,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-								  <td>08:00-09:45</td>
-								  <td>module 1</td>
-								  <td>module 2</td>
-								  <td>module 3</td>
-								  <td>module 4</td>
-								  <td>module 1</td>
-								</tr>
-								<tr>
-								  <td>10:00-11:45</td>
-								  <td>module 3</td>
-								  <td>module 1</td>
-								  <td>module 2</td>
-								  <td>module 1</td>
-								  <td>module 4</td>
-								</tr>
-								<tr>
-								  <td>12:00-01:45</td>
-								  <td>module 1</td>
-								  <td>module 2</td>
-								  <td>module 3</td>
-								  <td>module 4</td>
-								  <td>module 1</td>
-								</tr>
+
+<?php
+				for($i=0;$i<$ct;$i++){
+						echo	'<tr>
+								  <td>'.$time_mon[$i].'</td>
+								  <td>'.$modules_mon[$i].'<br><p style="margin-left:50px;">'.$v_title_mon[$i].'</p></td>
+								  <td>'.$modules_tues[$i].'<br><p style="margin-left:50px;">'.$v_title_tues[$i].'</p></td>
+								  <td>'.$modules_wed[$i].'<br><p style="margin-left:50px;">'.$v_title_wed[$i].'</p></td>
+								  <td>'.$modules_thur[$i].'<br><p style="margin-left:50px;">'.$v_title_thur[$i].'</p></td>
+								  <td>'.$modules_fri[$i].'<br><p style="margin-left:50px;">'.$v_title_fri[$i].'</p></td>
+								</tr>';
+				}
+	}
+?>
 							</tbody>
 						</table>
 					</div>

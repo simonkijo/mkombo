@@ -1,14 +1,14 @@
 <?php
-	include('config/config.php');
-	include('config/functions.php');
+	include('../config/config.php');
+	include('../config/functions.php');
 	include('header/head.php');
-	include('header/asideMenuAdmissionOfficer.php');
+	include('header/asideMenuAdmin.php');
 	include('data/profileData.php');
 	
 	if(logged_in()){
 		
 	}else{
-		header('Location: staffLogin.php');
+		header('Location: adminLogin.php');
 	}
 	
 	if(isset($_GET['response'])){
@@ -26,40 +26,22 @@
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">USER MANAGEMENT</li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-edit"></i> <span>Students Approval</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-            <li>
-				<a href="#"><i class="fa fa-file-o"></i> <span>Bachelor Degree</span> <i class="fa fa-angle-left pull-right"></i></a>
-				<ul class="treeview-menu">
-					<li><a href="admissionOfficer.php?user=admission_officer"><i class="fa fa-file-o"></i> <span>Computer Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-file-o"></i> <span>Civil Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-file-o"></i> <span>Telecommunication Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-file-o"></i> <span>Mechanical Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-file-o"></i> <span>Electrical Eng</span> </a></li>
-				</ul>
-			</li>
-          </ul>
-        </li>
-		<!--end of students approval-->
 		<li class="treeview">
-          <a href="#"><i class="fa fa-pie-chart"></i> <span>Admission Reports</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-			<li><a href="#"><i class="fa fa-user"></i> <span>All Students</span></a></li>
-            <li>
-				<a href="#"><i class="fa fa-files-o"></i> <span>Students by Course</span> <i class="fa fa-angle-left pull-right"></i></a>
-				<ul class="treeview-menu">
-					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Computer Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Civil Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Telecommunication Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Mechanical Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Electrical Eng</span> </a></li>
-				</ul>
-			</li>
-          </ul>
-        </li>
-		<!--end of admission reports-->
-		<li class="active"><a href="admissionProfile.php?user=admission_officer"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
+			<a href="#"><i class="fa fa-book"></i> <span>Student Management</span> <i class="fa fa-angle-left pull-right"></i></a>
+			<ul class="treeview-menu">
+				<li><a href="#"><i class="fa fa-file-o"></i> <span>Bachelor Degree</span></a></li>
+				<li><a href="#"><i class="fa fa-file-o"></i> <span>Ordinary Diploma</span></a></li>
+			</ul>
+		</li>
+		<li class="treeview">
+			<a href="#"><i class="fa fa-book"></i> <span>Lecturer Management</span> <i class="fa fa-angle-left pull-right"></i></a>
+			<ul class="treeview-menu">
+				<li><a href="#"><i class="fa fa-file-o"></i> <span>Bachelor Degree</span></a></li>
+				<li><a href="#"><i class="fa fa-file-o"></i> <span>Ordinary Diploma</span></a></li>
+			</ul>
+		</li>
+		<li><a href="#"><i class="fa fa-book"></i> <span>Staff Management</span></a></li>
+		<li class="active"><a href="adminProfile.php?user=admin"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -71,7 +53,7 @@
     <section class="content-header">
       <h1>My Profile<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="admissionOfficer.php?user=admission_officer"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="admin.php?user=admin"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li class="active">Profile Settings</li>
       </ol>
     </section>
@@ -102,10 +84,10 @@
 			<div class="col-md-3">
 				<div class="box box-primary">
 					<div class="box-body box-profile">
-					  <img class="profile-user-img img-responsive img-circle" src="dist/img/user_kijo.png" alt="User profile picture">
+					  <img class="profile-user-img img-responsive img-circle" src="../dist/img/user_kijo.png" alt="User profile picture">
 
 					  <h3 class="profile-username text-center"><?php echo getField('fname')." ".getField('sname');?></h3>
-					  <p class="text-muted text-center">Admission Officer</p>
+					  <p class="text-muted text-center">System Administrator</p>
 
 					  <ul class="list-group list-group-unbordered">
 						<li class="list-group-item">
@@ -129,6 +111,7 @@
 				<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs">
 						  <li class="active"><a href="#p_info" data-toggle="tab">Personal Information</a></li>
+						  <li><a href="#m_info" data-toggle="tab">More Information</a></li>
 						</ul>
 					<div class="tab-content box-height-tab">
 						 <div class="active tab-pane" id="p_info">
@@ -170,7 +153,56 @@
 							  </div>
 							  <div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-								  <button type="submit" name="sv_adm" class="btn btn-primary sv_adm">Save Changes</button>
+								  <button type="submit" name="sv_aca" class="btn btn-primary sv_adm">Save Changes</button>
+								</div>
+							  </div>
+							</form>
+						  </div>
+						  <!-- /.tab-pane --> 
+						  <div class="tab-pane" id="m_info">
+							<form class="form-horizontal" method="post" enctype="multipart/form-data">
+							  <div class="form-group">
+								<label class="col-sm-2 control-label">First Name:</label>
+								<div class="col-sm-10 pfname-err">
+								  <input type="text" name="inputFname" class="form-control inputFname" value="<?php echo getField('fname');?>">
+								  <span class="help-block pfname-err-sms"></span>
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="col-sm-2 control-label">Middle Name:</label>
+								<div class="col-sm-10 pmname-err">
+								  <input type="text" name="inputMname" class="form-control inputMname" value="<?php echo getField('mname');?>">
+								  <span class="help-block pmname-err-sms"></span>
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="col-sm-2 control-label">Surname:</label>
+								<div class="col-sm-10 psname-err">
+								  <input type="text" name="inputSname" class="form-control inputSname" value="<?php echo getField('sname');?>">
+								  <span class="help-block psname-err-sms"></span>
+								</div>
+							  </div>
+							  
+							  <div class="form-group">
+								<label class="col-sm-2 control-label">Nationality</label>
+								<div class="col-sm-10 pnationality-err">
+								  <input type="text" name="inputNationality" class="form-control inputNationality" value="<?php echo getField('nationality');?>">
+								  <span class="help-block pnationality-err-sms"></span>
+								</div>
+							  </div>
+							  <div class="form-group" style="margin-left:20%;">
+								<label>
+								  <input type="radio" name="gender" class="minimal" checked value="Male">
+								  Male
+								</label>
+								<label>
+								  <input type="radio" name="gender" class="minimal" value="Female">
+								  Female
+								</label>
+							  </div>
+							  <div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+								  <button type="submit" name="sv_ad_2" class="btn btn-primary sv_ad_2">Save Changes</button>
 								</div>
 							  </div>
 							</form>

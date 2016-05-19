@@ -4,6 +4,11 @@
 	include('header/head.php');
 	include('header/asideMenuLecturer.php');
 	
+	if(logged_in()){
+		
+	}else{
+		header('Location: staffLogin.php');
+	}
 ?>
   <aside class="main-sidebar">
     <section class="sidebar">
@@ -12,7 +17,16 @@
       <ul class="sidebar-menu">
         <li class="header">USER MANAGEMENT</li>
         <li class="active"><a href="lecturer.php?user=lecturer"><i class="fa fa-files-o"></i> <span>Student Marks</span> </a></li>
-		<!--end of student marks-->
+<?php 
+	$hod = getField('hod');
+	if(isset($hod) && !empty($hod)){
+		if($hod == 'yes'){
+			echo '<li><a href="#"><i class="fa fa-book"></i> <span>Module Assignment</span> </a></li>
+				<li><a href="#"><i class="fa fa-book"></i> <span>Add Module</span> </a></li>';
+		}
+	}
+?>
+		
 		<li><a href="lecturerProfile.php?user=lecturer"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->

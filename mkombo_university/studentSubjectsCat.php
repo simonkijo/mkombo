@@ -3,6 +3,12 @@
 	include('config/functions.php');
 	include('header/head.php');
 	include('header/asideMenuStudent.php');
+	
+	if(logged_in()){
+		
+	}else{
+		header('Location: studentLogin.php');
+	}
 ?>
 <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
@@ -45,7 +51,8 @@
 					<div class="form-group">
 						<label>Year:</label><br>
 						<select name="year" class="form-control select2"> 
-						  <option selected="selected" value="first">First</option>
+						  <option selected="selected" value="">Select a Year</option>
+						  <option value="first">First</option>
 						  <option value="second">Second</option>
 						  <option value="third">Third</option>
 						  <option value="forth">Forth</option>
@@ -56,7 +63,8 @@
 					<div class="form-group">
 						<label>Semester:</label><br>
 						<select name="semester" class="form-control select2">
-						  <option selected="selected" value="first">First</option>
+						  <option selected="selected" value="">Select a Semester</option>
+						  <option value="first">First</option>
 						  <option value="second">Second</option>
 						</select>
 					</div>
@@ -64,11 +72,26 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<label></label><br>
-						<button type="submit" class="btn btn-primary">Show</button>
+						<button type="submit" name="show_subjects" class="btn btn-primary">Show</button>
 					</div>
 				</div>
 				</form>
 			</div>
+<?php 
+	if(isset($_POST['show_subjects'])){
+		$year = $_POST['year'];
+		$semister = $_POST['semester'];
+		$course = getField('course');
+		
+		$query = "SELECT `code`,`module_title`,`credit` FROM `mkombo_university`.`modules` WHERE `course`='".$course."' AND `year`='".$year."' AND `semister`='".$semister."'";
+		$run = mysql_query($query);
+		$count = mysql_num_rows($run);
+		while($row = mysql_fetch_array($run)){
+			$code[] = $row['code'];
+			$module[] = $row['module_title'];
+			$credit[] = $row['credit'];
+		}
+?>
 			<div class="row">
 				<div class="col-md-11">
 					<div class="box-body">
@@ -81,101 +104,22 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-								  <td>cseu 08734</td>
-								  <td>module 1</td>
-								  <td>6</td>
-								</tr>
-								<tr>
-								  <td>cseu 08234</td>
-								  <td>module 2</td>
-								  <td>8</td>
-								</tr>
-								<tr>
-								  <td>cseu 08331</td>
-								  <td>module 3</td>
-								  <td>16</td>
-								</tr>
-								<tr>
-								  <td>cseu 08134</td>
-								  <td>module 5</td>
-								  <td>9</td>
-								</tr>
-								<tr>
-								  <td>cseu 08221</td>
-								  <td>module 8</td>
-								  <td>10</td>
-								</tr>
-								<tr>
-								  <td>cseu 08131</td>
-								  <td>module 6</td>
-								  <td>5</td>
-								</tr>
-								<tr>
-								  <td>cseu 08734</td>
-								  <td>module 1</td>
-								  <td>6</td>
-								</tr>
-								<tr>
-								  <td>cseu 08234</td>
-								  <td>module 2</td>
-								  <td>8</td>
-								</tr>
-								<tr>
-								  <td>cseu 08331</td>
-								  <td>module 3</td>
-								  <td>16</td>
-								</tr>
-								<tr>
-								  <td>cseu 08134</td>
-								  <td>module 5</td>
-								  <td>9</td>
-								</tr>
-								<tr>
-								  <td>cseu 08221</td>
-								  <td>module 8</td>
-								  <td>10</td>
-								</tr>
-								<tr>
-								  <td>cseu 08131</td>
-								  <td>module 6</td>
-								  <td>5</td>
-								</tr>
-								<tr>
-								  <td>cseu 08734</td>
-								  <td>module 1</td>
-								  <td>6</td>
-								</tr>
-								<tr>
-								  <td>cseu 08234</td>
-								  <td>module 2</td>
-								  <td>8</td>
-								</tr>
-								<tr>
-								  <td>cseu 08331</td>
-								  <td>module 3</td>
-								  <td>16</td>
-								</tr>
-								<tr>
-								  <td>cseu 08134</td>
-								  <td>module 5</td>
-								  <td>9</td>
-								</tr>
-								<tr>
-								  <td>cseu 08221</td>
-								  <td>module 8</td>
-								  <td>10</td>
-								</tr>
-								<tr>
-								  <td>cseu 08131</td>
-								  <td>module 6</td>
-								  <td>5</td>
-								</tr>
+<?php
+			for($i=0;$i<$count;$i++){
+						echo	'<tr>
+								  <td>'.$code[$i].'</td>
+								  <td>'.$module[$i].'</td>
+								  <td>'.$credit[$i].'</td>
+								</tr>';
+			}
+		}
+?>
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
+
 		</div>
     </section>
     <!-- /.content -->
