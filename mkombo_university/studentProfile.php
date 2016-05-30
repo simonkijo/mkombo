@@ -29,12 +29,12 @@
       <ul class="sidebar-menu">
         <li class="header">USER MANAGEMENT</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="student.php?user=student"><i class="fa fa-table"></i> <span>Class Time Table</span> </a></li>
-        <li><a href="studentSubjectsCat.php?user=student"><i class="fa fa-th"></i> <span>Subjects Catalogue</span> </a></li>
+        <li><a href="student.php"><i class="fa fa-table"></i> <span>Class Time Table</span> </a></li>
+        <li><a href="studentSubjectsCat.php"><i class="fa fa-th"></i> <span>Subjects Catalogue</span> </a></li>
 		<!--end of subjects catalog-->
-		<li><a href="studentAcademicReport.php?user=student"><i class="fa fa-files-o"></i> <span>Academic Reports</span> </a></li>
+		<li><a href="studentAcademicReport.php"><i class="fa fa-files-o"></i> <span>Academic Reports</span> </a></li>
 		<!--end of academic report-->
-		<li class="active"><a href="studentProfile.php?user=student"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
+		<li class="active"><a href="studentProfile.php"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
     </section>
   </aside>
@@ -44,7 +44,7 @@
     <section class="content-header">
       <h1>My Profile<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="student.php?user=student"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="student.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Profile Settings</li>
       </ol>
     </section>
@@ -77,23 +77,23 @@
 					<div class="box-body box-profile">
 					  <img class="profile-user-img img-responsive img-circle" src="dist/img/user_kijo.png" alt="User profile picture">
 
-					  <h3 class="profile-username text-center"><?php echo getField('fname')." ".getField('sname');?></h3>
+					  <h3 class="profile-username text-center"><?php echo getInfo('fname','student')." ".getInfo('sname','student');?></h3>
 
 					  <ul class="list-group list-group-unbordered">
 						<li class="list-group-item">
-						  <b>Marital Status:</b> <a class="pull-right"><?php echo getField('marital_status');?></a>
+						  <b>Marital Status:</b> <a class="pull-right"><?php echo getInfo('marital_status','student');?></a>
 						</li>
 						<li class="list-group-item">
-						  <b>Phone Number:</b> <a class="pull-right"><?php echo getField('phone_no');?></a>
+						  <b>Phone Number:</b> <a class="pull-right"><?php echo getInfo('phone_no','student');?></a>
 						</li>
 						<li class="list-group-item">
-						  <b>E-mail:</b> <a class="pull-right"><?php echo getField('email_address');?></a>
+						  <b>E-mail:</b> <a class="pull-right"><?php echo getInfo('email_address','student');?></a>
 						</li>
 						<li class="list-group-item">
-						  <b>Nationality:</b> <a class="pull-right"><?php echo getField('nationality');?></a>
+						  <b>Nationality:</b> <a class="pull-right"><?php echo getInfo('nationality','student');?></a>
 						</li>
 						<li class="list-group-item">
-						  <b>Birth Date:</b> <a class="pull-right"><?php echo getField('birth_date');?></a>
+						  <b>Birth Date:</b> <a class="pull-right"><?php echo getInfo('birth_date','student');?></a>
 						</li>
 					  </ul>
 					</div>
@@ -112,28 +112,28 @@
 							  <div class="form-group">
 								<label for="inputEmail" class="col-sm-2 control-label">E-mail:</label>
 								<div class="col-sm-10 email-err">
-								  <input type="email" name="inputEmail" class="form-control inputEmail" value="<?php echo getField('email_address');?>">
+								  <input type="email" name="inputEmail" class="form-control inputEmail" value="<?php echo getInfo('email_address','student');?>">
 								  <span class="help-block email-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label for="inputPhone" class="col-sm-2 control-label">Phone No:</label>
 								<div class="col-sm-10 phone-err">
-								  <input type="text" name="inputPhone" class="form-control inputPhone" value="<?php echo getField('phone_no');?>">
+								  <input type="text" name="inputPhone" class="form-control inputPhone" value="<?php echo getInfo('phone_no','student');?>">
 								  <span class="help-block phone-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label for="inputMarital" class="col-sm-2 control-label">Marital Status:</label>
 								<div class="col-sm-10 marital-err">
-								  <input type="text" name="inputMarital" class="form-control inputMarital" value="<?php echo getField('marital_status');?>">
+								  <input type="text" name="inputMarital" class="form-control inputMarital" value="<?php echo getInfo('marital_status','student');?>">
 								  <span class="help-block marital-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label for="inputHome" class="col-sm-2 control-label">Home Place:</label>
 								<div class="col-sm-10 home-err">
-								  <input type="text" name="inputHome" class="form-control inputHome" value="<?php echo getField('home_place');?>">
+								  <input type="text" name="inputHome" class="form-control inputHome" value="<?php echo getInfo('home_place','student');?>">
 								  <span class="help-block home-err-sms"></span>
 								</div>
 							  </div>
@@ -277,7 +277,7 @@
 						  <b>Vote:</b> <a class="pull-right"><?php echo getInfo('vote','health_insurance');?></a>
 						</li>
 						<li class="list-group-item">
-						  <b>P.O.Box:</b> <a class="pull-right"><?php echo getInfo('address','health_insurance');?></a>
+						  <b>P.O.Box:</b> <p><a class="pull-right"><?php echo getInfo('address','health_insurance');?></a></p>
 						</li>
 						<li class="list-group-item">
 						  <b>Issue Date:</b> <a class="pull-right"><?php echo getInfo('issue_date','health_insurance');?></a>

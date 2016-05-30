@@ -25,18 +25,30 @@
       showInputs: false
     });
 	//for button which adds new input field in venue management.
-	  var n = 1;
 	$('.addBtn').click(function(){
 		$('.another_input').append('<input type="text" class="form-control" name="venue[]"><br>');
 	});
 	//for button which adds new input field in subjects catalogue.
 	$('.addBtnModule').click(function(){
-		n++;
 		$('.code_').append('<input type="text" class="form-control" name="code[]"><br>');
 		$('.module_').append('<input type="text" class="form-control" name="module_title[]"><br>');
 		$('.credit_').append('<input type="text" class="form-control" name="credit[]"><br>');
 	});
-    //Initialize Select2 Elements
+	//for button which adds new input field in student management.
+	$('.addBtnStudent').click(function(){
+		$('.fname').append('<input type="text" class="form-control fname_i" name="fname[]"><br>');
+		$('.mname').append('<input type="text" class="form-control mname_i" name="mname[]"><br>');
+		$('.sname').append('<input type="text" class="form-control sname_i" name="sname[]"><br>');
+	});
+	//for button which adds new input field in lecturer management.
+	$('.addBtnLecturer').click(function(){
+		$('.fname').append('<input type="text" class="form-control" name="fname[]"><br>');
+		$('.mname').append('<input type="text" class="form-control" name="mname[]"><br>');
+		$('.sname').append('<input type="text" class="form-control" name="sname[]"><br>');
+		$('.hod').append('<div class="form-group" style="margin-bottom:41%;"><select name="hod[]" style="padding:7%;"><option>NO</option><option>YES</option></select></div>');
+	});
+	
+    //Initialize Select2 Elements 
     $(".select2").select2();
 	$('#examGpa').DataTable();
 	$('#time_table').DataTable({

@@ -3,6 +3,7 @@
 	include('config/functions.php');
 	include('header/head.php');
 	include('header/asideMenuExamOfficer.php');
+	include('data/courseOption.php');
 	include('data/moduleData.php');
 	
 	if(logged_in()){
@@ -21,31 +22,32 @@
         <li class="active treeview">
           <a href="#"><i class="fa fa-th"></i> <span>Subjects Catalogue</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li class="active">
-				<a href="#"><i class="fa fa-book"></i> <span>Bachelor Degree</span> <i class="fa fa-angle-left pull-right"></i></a>
+			<li class="active"><a href="#"><i class="fa fa-book"></i> <span>Add Module</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li class="active"><a href="examinationOfficer.php?user=examination_officer&class=computer"><i class="fa fa-circle-o"></i> <span>Computer Eng</span> </a></li>
-					<li><a href="examOfficerCivil.php?user=examination_officer&class=civil"><i class="fa fa-circle-o"></i> <span>Civil Eng</span> </a></li>
-					<li><a href="examOfficerTele.php?user=examination_officer&class=telecom"><i class="fa fa-circle-o"></i> <span>Telecommunication Eng</span> </a></li>
-					<li><a href="examOfficerMech.php?user=examination_officer&class=mechanical"><i class="fa fa-circle-o"></i> <span>Mechanical Eng</span> </a></li>
-					<li><a href="examOfficerEle.php?user=examination_officer&class=electrical"><i class="fa fa-circle-o"></i> <span>Electrical Eng</span> </a></li>
+					<li class="active"><a href="examinationOfficer.php"><i class="fa fa-circle-o"></i> <span>Bachelor Degree</span></a></li>
+					<li><a href="examOfficerDiploma.php"><i class="fa fa-circle-o"></i> <span>Ordinary Diploma</span></a></li>
 				</ul>
 			</li>
+			<li><a href="addCourse.php"><i class="fa fa-book"></i> <span>Add Course</span></a></li>
           </ul>
         </li>
 		<!--end of subjects catalog-->
 		<li class="treeview">
-          <a href="#"><i class="fa fa-files-o"></i> <span>GPA Computation</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-			<li><a href="examGpaComp.php?user=examination_officer"><i class="fa fa-book"></i> <span>Computer Eng</span> </a></li>
-			<li><a href="examGpaCivil.php?user=examination_officer"><i class="fa fa-book"></i> <span>Civil Eng</span> </a></li>
-			<li><a href="examGpaTele.php?user=examination_officer"><i class="fa fa-book"></i> <span>Telecommunication Eng</span> </a></li>
-			<li><a href="examGpaMech.php?user=examination_officer"><i class="fa fa-book"></i> <span>Mechanical Eng</span> </a></li>
-			<li><a href="examGpaEle.php?user=examination_officer"><i class="fa fa-book"></i> <span>Electrical Eng</span> </a></li>
-          </ul>
-        </li>
+			<a href="#"><i class="fa fa-files-o"></i> <span>GPA Computation</span> <i class="fa fa-angle-left pull-right"></i></a>
+			<ul class="treeview-menu">
+				<li><a href="examGpaBachelor.php"><i class="fa fa-circle-o"></i> <span>Bachelor Degree</span></a></li>
+				<li><a href="examGpaDiploma.php"><i class="fa fa-circle-o"></i> <span>Ordinary Diploma</span></a></li>
+			</ul>
+		</li>
 		<!--end of GPA computation-->
-		<li><a href="examOfficerProfile.php?user=examination_officer"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
+		<li class="treeview">
+			<a href="#"><i class="fa fa-file-o"></i> <span>Grant Permission</span> <i class="fa fa-angle-left pull-right"></i></a>
+			<ul class="treeview-menu">
+				<li><a href="examGrantPermission.php"><i class="fa fa-circle-o"></i> <span>Bachelor Degree</span></a></li>
+				<li><a href="examGrantPermissionDiploma.php"><i class="fa fa-circle-o"></i> <span>Ordinary Diploma</span></a></li>
+			</ul>
+		</li>
+		<li><a href="examOfficerProfile.php"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -57,9 +59,8 @@
     <section class="content-header">
       <h1>Subjects Catalogue<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="examinationOfficer.php?user=examination_officer&class=computer"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li>Bachelor Degree</li>
-        <li class="active">Computer Eng</li>
+        <li><a href="examinationOfficer.php"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li class="active">Bachelor Degree</li>
       </ol>
     </section>
 
@@ -84,6 +85,16 @@
 					echo "<div class='callout callout-danger displaySms'>
 						<h4>ERROR !</h4>
 						<p>Sorry something went wrong, try again.</p>
+					</div>";
+				}else if($md_success[2] == 'empty'){
+					echo "<div class='callout callout-danger displaySms'>
+						<h4>ERROR !</h4>
+						<p>Please Fill the field.</p>
+					</div>";
+				}else if($md_success[3] == 'invalid'){
+					echo "<div class='callout callout-danger displaySms'>
+						<h4>ERROR !</h4>
+						<p>Please make sure code, module title and credit are example: [a-z 1-9], [a-zA-Z] and [1-9] respectively.</p>
 					</div>";
 				}	
 			}
@@ -113,6 +124,21 @@
 						  <option selected="selected" value="">Select a semester</option>
 						  <option value="first">First</option>
 						  <option value="second">Second</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Course:</label><br>
+						<select name="course" class="form-control select2">
+						  <option selected="selected" value="">Select a Course</option>
+<?php
+		if(isset($course)){
+			foreach($course as $c){
+					echo  '<option>'.$c.'</option>';
+			}
+		}
+?>						  
 						</select>
 					</div>
 				</div>
@@ -155,7 +181,7 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<label></label><br>
-						<button type="submit" name="sv_modules" class="btn btn-primary">Save</button>
+						<button type="submit" name="sv_modules_b" class="btn btn-primary">Save</button>
 					</div>
 				</div>
 			</div>

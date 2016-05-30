@@ -2,9 +2,11 @@
 	include('config/config.php');
 	include('config/functions.php');
 	include('data/studentRegData.php');
-	error_reporting("E_NOTICE");
-	if($_GET['response'] == 'fail'){
-		$response = "Sorry ,something went wrong. Please try again.";
+	
+	if(isset($_GET['response'])){
+		if($_GET['response'] == 'fail'){
+			$response = "Sorry ,something went wrong. Please try again.";
+		}
 	}
 ?>
 <!DOCTYPE html>
@@ -47,7 +49,16 @@
 					<h4>Error !</h4>
 					<p>".$response."</p>
 				</div>";
-		}?>
+		}
+		if(isset($error)){
+			if($error[0] == 'empty' && $error[1] == 'empty' && $error[2] == 'empty'){
+				echo "<div class='callout callout-danger displaySms'>
+						<h4>Error !</h4>
+						<p>Sorry, You are not admitted. Please see Admission Officer</p>
+					</div>";
+			}	
+		}
+		?>
 	</div>
 	<div class="col-md-3"></div>
 </div>
@@ -541,7 +552,7 @@
 <script>
   $(function () {
 	//message
-	$('.displaySms').delay(4000).fadeOut();  
+	$('.displaySms').delay(7000).fadeOut();  
     //Initialize Select2 Elements
     $(".select2").select2();
 

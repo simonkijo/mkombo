@@ -5,18 +5,18 @@
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Click here for Profile and Log out">
               <!-- The user image in the navbar-->
               <!--<img src="dist/img/user_kijo.png" class="user-image" alt="User Image">-->
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs"><?php echo getField('sname').", ".getField('fname');?></span>
+              <span class="hidden-xs"><?php firstCapitalLetter(getField('sname')); echo ', '; firstCapitalLetter(getField('fname'));?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
                 <img src="dist/img/user_kijo.png" class="img-circle" alt="User Image">
 
-                <p><?php echo getField('sname').", ".getField('fname');?><small>Time Table Master</small></p>
+                <p><?php firstCapitalLetter(getField('sname')); echo ', '; firstCapitalLetter(getField('fname'));?><small>Time Table Master</small></p>
               </li>
               <!-- Menu Body -->
 

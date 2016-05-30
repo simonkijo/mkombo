@@ -9,21 +9,21 @@
               <!-- The user image in the navbar-->
               <!--<img src="dist/img/user_kijo.png" class="user-image" alt="User Image">-->
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs"><?php echo getField('sname').", ".getField('fname');?></span>
+              <span class="hidden-xs"><?php echo getFieldAdmin('sname','admin').", ".getFieldAdmin('fname','admin');?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
                 <img src="../dist/img/user_kijo.png" class="img-circle" alt="User Image">
 
-                <p><?php echo getField('sname').", ".getField('fname');?><small>System Administrator</small></p>
+                <p><?php echo getFieldAdmin('sname','admin').", ".getFieldAdmin('fname','admin');?><small>System Administrator</small></p>
               </li>
               <!-- Menu Body -->
 
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="adminProfile.php?user=admin" class="btn btn-default btn-flat">Profile</a>
+                  <a href="adminProfile.php" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>

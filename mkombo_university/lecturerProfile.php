@@ -25,9 +25,17 @@
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">USER MANAGEMENT</li>
-        <li><a href="lecturer.php?user=lecturer"><i class="fa fa-files-o"></i> <span>Student Marks</span> </a></li>
-		<!--end of student marks-->
-		<li class="active"><a href="lecturerProfile.php?user=lecturer"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
+        <li><a href="lecturer.php"><i class="fa fa-files-o"></i> <span>Student Marks</span> </a></li>
+<?php 
+	$hod = getRoleField('hod');
+	if(isset($hod) && !empty($hod)){
+		if($hod == 'YES'){
+			echo '<li><a href="moduleAssignment.php"><i class="fa fa-book"></i> <span>Module Assignment</span> </a></li>';
+		}
+	}
+?>
+		<li><a href="classAllocation.php"><i class="fa fa-calendar"></i> <span>Class Allocation</span></a></li>
+		<li class="active"><a href="lecturerProfile.php"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -39,7 +47,7 @@
     <section class="content-header">
       <h1>My Profile<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="lecturer.php?user=lecturer"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="lecturer.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Profile Settings</li>
       </ol>
     </section>
@@ -72,7 +80,7 @@
 					<div class="box-body box-profile">
 					  <img class="profile-user-img img-responsive img-circle" src="dist/img/user_kijo.png" alt="User profile picture">
 
-					  <h3 class="profile-username text-center"><?php echo getField('fname')." ".getField('sname');?></h3>
+					  <h3 class="profile-username text-center"><?php firstCapitalLetter(getField('fname')); echo ' '; firstCapitalLetter(getField('sname'));?></h3>
 					  <p class="text-muted text-center">Lecturer</p>
 
 					  <ul class="list-group list-group-unbordered">

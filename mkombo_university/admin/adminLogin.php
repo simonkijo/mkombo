@@ -19,7 +19,7 @@
 				$usern = mysql_result($query_run,0,'username');
 				$_SESSION['username'] = $usern;
 				
-				header('Location:admin.php?user=admin');
+				header('Location:admin.php');
 			}
 		}
 	}

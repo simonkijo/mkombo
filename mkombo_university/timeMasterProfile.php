@@ -26,19 +26,16 @@
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">USER MANAGEMENT</li>
-        <li><a href="timeTableMaster.php?user=time_table_master"><i class="fa fa-th"></i> <span>Venue Management</span> </a></li>
+        <li><a href="timeTableMaster.php"><i class="fa fa-th"></i> <span>Venue Management</span> </a></li>
 		<li class="treeview">
           <a href="#"><i class="fa fa-table"></i> <span>Class Time Table</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-			<li><a href="timeMasterComp.php?user=time_table_master"><i class="fa fa-book"></i> <span>Computer Eng</span> </a></li>
-			<li><a href="timeMasterCivil.php?user=time_table_master"><i class="fa fa-book"></i> <span>Civil Eng</span> </a></li>
-			<li><a href="timeMasterTele.php?user=time_table_master"><i class="fa fa-book"></i> <span>Telecommunication Eng</span> </a></li>
-			<li><a href="timeMasterMech.php?user=time_table_master"><i class="fa fa-book"></i> <span>Mechanical Eng</span> </a></li>
-			<li><a href="timeMasterEle.php?user=time_table_master"><i class="fa fa-book"></i> <span>Electrical Eng</span> </a></li>
+			<li><a href="timeTableBachelor.php"><i class="fa fa-book"></i> <span>Bachelor Degree</span> </a></li>
+			<li><a href="timeTableDiploma.php"><i class="fa fa-book"></i> <span>Ordinary Diploma</span> </a></li>
           </ul>
         </li>
 		<!--end of class time table-->
-		<li class="active"><a href="timeMasterProfile.php?user=time_table_master"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
+		<li class="active"><a href="timeMasterProfile.php"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -50,7 +47,7 @@
     <section class="content-header">
       <h1>My Profile<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="timeTableMaster.php?user=time_table_master"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="timeTableMaster.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Profile Settings</li>
       </ol>
     </section>
@@ -83,7 +80,7 @@
 					<div class="box-body box-profile">
 					  <img class="profile-user-img img-responsive img-circle" src="dist/img/user_kijo.png" alt="User profile picture">
 
-					  <h3 class="profile-username text-center"><?php echo getField('fname')." ".getField('sname');?></h3>
+					  <h3 class="profile-username text-center"><?php firstCapitalLetter(getField('fname')); echo ' '; firstCapitalLetter(getField('sname'));?></h3>
 					  <p class="text-muted text-center">Time Table Master</p>
 
 					  <ul class="list-group list-group-unbordered">

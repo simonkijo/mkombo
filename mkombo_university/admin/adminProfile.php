@@ -29,19 +29,13 @@
 		<li class="treeview">
 			<a href="#"><i class="fa fa-book"></i> <span>Student Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 			<ul class="treeview-menu">
-				<li><a href="#"><i class="fa fa-file-o"></i> <span>Bachelor Degree</span></a></li>
-				<li><a href="#"><i class="fa fa-file-o"></i> <span>Ordinary Diploma</span></a></li>
+				<li><a href="admin.php"><i class="fa fa-file-o"></i> <span>Bachelor Degree</span></a></li>
+				<li><a href="adminStudentDiploma.php"><i class="fa fa-file-o"></i> <span>Ordinary Diploma</span></a></li>
 			</ul>
 		</li>
-		<li class="treeview">
-			<a href="#"><i class="fa fa-book"></i> <span>Lecturer Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-			<ul class="treeview-menu">
-				<li><a href="#"><i class="fa fa-file-o"></i> <span>Bachelor Degree</span></a></li>
-				<li><a href="#"><i class="fa fa-file-o"></i> <span>Ordinary Diploma</span></a></li>
-			</ul>
-		</li>
-		<li><a href="#"><i class="fa fa-book"></i> <span>Staff Management</span></a></li>
-		<li class="active"><a href="adminProfile.php?user=admin"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
+		<li><a href="adminLecturer.php"><i class="fa fa-book"></i> <span>Lecturer Management</span></a></li>
+		<li><a href="adminStaff.php"><i class="fa fa-book"></i> <span>Staff Management</span></a></li>
+		<li class="active"><a href="adminProfile.php"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -53,7 +47,7 @@
     <section class="content-header">
       <h1>My Profile<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="admin.php?user=admin"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li class="active">Profile Settings</li>
       </ol>
     </section>
@@ -86,21 +80,21 @@
 					<div class="box-body box-profile">
 					  <img class="profile-user-img img-responsive img-circle" src="../dist/img/user_kijo.png" alt="User profile picture">
 
-					  <h3 class="profile-username text-center"><?php echo getField('fname')." ".getField('sname');?></h3>
+					  <h3 class="profile-username text-center"><?php echo getFieldAdmin('fname','admin')." ".getFieldAdmin('sname','admin');?></h3>
 					  <p class="text-muted text-center">System Administrator</p>
 
 					  <ul class="list-group list-group-unbordered">
 						<li class="list-group-item">
-						  <b>Phone Number:</b> <a class="pull-right"><?php echo getField('phone_no');?></a>
+						  <b>Phone Number:</b> <a class="pull-right"><?php echo getFieldAdmin('phone_no','admin');?></a>
 						</li>
 						<li class="list-group-item">
-						  <b>E-mail:</b> <a class="pull-right"><?php echo getField('email_address');?></a>
+						  <b>E-mail:</b> <a class="pull-right"><?php echo getFieldAdmin('email_address','admin');?></a>
 						</li>
 						<li class="list-group-item">
-						  <b>Nationality:</b> <a class="pull-right"><?php echo getField('nationality');?></a>
+						  <b>Nationality:</b> <a class="pull-right"><?php echo getFieldAdmin('nationality','admin');?></a>
 						</li>
 						<li class="list-group-item">
-						  <b>Username:</b> <a class="pull-right"><?php echo getField('username');?></a>
+						  <b>Username:</b> <a class="pull-right"><?php echo getFieldAdmin('username','admin');?></a>
 						</li>
 					  </ul>
 					</div>
@@ -119,21 +113,21 @@
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">E-mail:</label>
 								<div class="col-sm-10 aemail-err">
-								  <input type="email" name="ainputEmail" class="form-control ainputEmail" value="<?php echo getField('email_address');?>">
+								  <input type="email" name="ainputEmail" class="form-control ainputEmail" value="<?php echo getFieldAdmin('email_address','admin');?>">
 								  <span class="help-block aemail-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Phone No:</label>
 								<div class="col-sm-10 aphone-err">
-								  <input type="text" name="ainputPhone" class="form-control ainputPhone" value="<?php echo getField('phone_no');?>">
+								  <input type="text" name="ainputPhone" class="form-control ainputPhone" value="<?php echo getFieldAdmin('phone_no','admin');?>">
 								  <span class="help-block aphone-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Username:</label>
 								<div class="col-sm-10 ausername-err">
-								  <input type="text" name="ainputUsername" class="form-control ainputUsername" value="<?php echo getField('username');?>">
+								  <input type="text" name="ainputUsername" class="form-control ainputUsername" value="<?php echo getFieldAdmin('username','admin');?>">
 								  <span class="help-block ausername-err-sms"></span>
 								</div>
 							  </div>
@@ -164,21 +158,21 @@
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">First Name:</label>
 								<div class="col-sm-10 pfname-err">
-								  <input type="text" name="inputFname" class="form-control inputFname" value="<?php echo getField('fname');?>">
+								  <input type="text" name="inputFname" class="form-control inputFname" value="<?php echo getFieldAdmin('fname','admin');?>">
 								  <span class="help-block pfname-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Middle Name:</label>
 								<div class="col-sm-10 pmname-err">
-								  <input type="text" name="inputMname" class="form-control inputMname" value="<?php echo getField('mname');?>">
+								  <input type="text" name="inputMname" class="form-control inputMname" value="<?php echo getFieldAdmin('mname','admin');?>">
 								  <span class="help-block pmname-err-sms"></span>
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Surname:</label>
 								<div class="col-sm-10 psname-err">
-								  <input type="text" name="inputSname" class="form-control inputSname" value="<?php echo getField('sname');?>">
+								  <input type="text" name="inputSname" class="form-control inputSname" value="<?php echo getFieldAdmin('sname','admin');?>">
 								  <span class="help-block psname-err-sms"></span>
 								</div>
 							  </div>
@@ -186,7 +180,7 @@
 							  <div class="form-group">
 								<label class="col-sm-2 control-label">Nationality</label>
 								<div class="col-sm-10 pnationality-err">
-								  <input type="text" name="inputNationality" class="form-control inputNationality" value="<?php echo getField('nationality');?>">
+								  <input type="text" name="inputNationality" class="form-control inputNationality" value="<?php echo getFieldAdmin('nationality','admin');?>">
 								  <span class="help-block pnationality-err-sms"></span>
 								</div>
 							  </div>

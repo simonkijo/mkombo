@@ -21,8 +21,8 @@
 			}else if($num_row == 1){
 				$user_id = mysql_result($query_run,0,'reg_no');
 				$_SESSION['user_id'] = $user_id;
-				$nam = "student";
-				header('Location:student.php?user='.$nam);
+				
+				header('Location:student.php');
 			}
 		}
 	}

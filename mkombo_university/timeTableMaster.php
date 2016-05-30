@@ -1,5 +1,4 @@
 <?php
-	error_reporting('E_NOTICE');
 	include('config/config.php');
 	include('config/functions.php');
 	include('header/head.php');
@@ -19,19 +18,16 @@
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">USER MANAGEMENT</li>
-        <li class="active"><a href="timeTableMaster.php?user=time_table_master"><i class="fa fa-th"></i> <span>Venue Management</span> </a></li>
+        <li class="active"><a href="timeTableMaster.php"><i class="fa fa-th"></i> <span>Venue Management</span> </a></li>
 		<li class="treeview">
           <a href="#"><i class="fa fa-table"></i> <span>Class Time Table</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-			<li><a href="timeMasterComp.php?user=time_table_master&class=computer"><i class="fa fa-book"></i> <span>Computer Eng</span> </a></li>
-			<li><a href="timeMasterCivil.php?user=time_table_master&class=civil"><i class="fa fa-book"></i> <span>Civil Eng</span> </a></li>
-			<li><a href="timeMasterTele.php?user=time_table_master&class=telecom"><i class="fa fa-book"></i> <span>Telecommunication Eng</span> </a></li>
-			<li><a href="timeMasterMech.php?user=time_table_master&class=mechanical"><i class="fa fa-book"></i> <span>Mechanical Eng</span> </a></li>
-			<li><a href="timeMasterEle.php?user=time_table_master&class=electrical"><i class="fa fa-book"></i> <span>Electrical Eng</span> </a></li>
+			<li><a href="timeTableBachelor.php"><i class="fa fa-book"></i> <span>Bachelor Degree</span> </a></li>
+			<li><a href="timeTableDiploma.php"><i class="fa fa-book"></i> <span>Ordinary Diploma</span> </a></li>
           </ul>
         </li>
 		<!--end of class time table-->
-		<li><a href="timeMasterProfile.php?user=time_table_master"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
+		<li><a href="timeMasterProfile.php"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -43,7 +39,7 @@
     <section class="content-header">
       <h1>Venue Management<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="timeTableMaster.php?user=time_table_master"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="timeTableMaster.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Venue Management</li>
       </ol>
     </section>
@@ -69,6 +65,16 @@
 					echo "<div class='callout callout-danger displaySms'>
 						<h4>ERROR !</h4>
 						<p>Sorry something went wrong, try again.</p>
+					</div>";
+				}else if($success[2] == 'empty'){
+					echo "<div class='callout callout-danger displaySms'>
+						<h4>ERROR !</h4>
+						<p>Please Fill the Field.</p>
+					</div>";
+				}else if($success[3] == 'invalid'){
+					echo "<div class='callout callout-danger displaySms'>
+						<h4>ERROR !</h4>
+						<p>Please make sure venue title contains capital letters, numbers and no space between them, for example: B12.</p>
 					</div>";
 				}	
 			}

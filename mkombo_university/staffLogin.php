@@ -2,36 +2,41 @@
 	include('config/config.php');
 	include('config/functions.php');
 	include('header/studentStaffLoginHeader.php');
-	error_reporting("E_NOTICE");
-	if($_GET['response'] == 'success'){
-		$response = "The Information is successful submitted. You can Login now.";
+	
+	if(isset($_GET['response'])){
+		if($_GET['response'] == 'success'){
+			$response = "The Information is successful submitted. You can Login now.";
+		}
 	}
 	
-	if(isset($_POST['username']) && isset($_POST['pass']) && isset($_POST['title'])){
+	if(isset($_POST['username']) && isset($_POST['pass'])){
 		$username = $_POST['username'];
 		$pass = $_POST['pass'];
-		$title = $_POST['title'];
 		$hash_pass = hashPassword($pass);
 		
-		if(!empty($username) && !empty($pass) && !empty($title)){
-			$query = "SELECT `username` FROM `mkombo_university`.`$title` WHERE `username`='".mysql_real_escape_string($username)."' AND `password`='".mysql_real_escape_string($hash_pass)."'";
+		if(!empty($username) && !empty($pass)){
+			$query = "SELECT `role`,`username` FROM `mkombo_university`.`staff` WHERE `username`='".mysql_real_escape_string($username)."' AND `password`='".mysql_real_escape_string($hash_pass)."'";
 			$query_run = mysql_query($query);
 			$num_row = mysql_num_rows($query_run);
 			if($num_row == 0){
 				$err_sms = "Invalid Username or Password";
 			}else if($num_row == 1){
-				$usern = mysql_result($query_run,0,'username');
-				$_SESSION['username'] = $usern;
-				if($title == "lecturer"){
-					header('Location:lecturer.php?user=lecturer');
-				}else if($title == "admission_officer"){
-					header('Location:admissionOfficer.php?user=admission_officer');
-				}else if($title == "examination_officer"){
-					header('Location:examinationOfficer.php?user=examination_officer&class=computer');
-				}else if($title == "time_table_master"){
-					header('Location:timeTableMaster.php?user=time_table_master');
-				}else if($title == "academic_officer"){
-					header('Location:academicOfficer.php?user=academic_officer');
+				while($row = mysql_fetch_array($query_run)){
+					$role = $row['role'];
+					$user = $row['username'];
+				}
+				
+				$_SESSION['username'] = $user;
+				if($role == "lecturer"){
+					header('Location:lecturer.php');
+				}else if($role == "admission officer"){
+					header('Location:admissionOfficer.php');
+				}else if($role == "examination officer"){
+					header('Location:examinationOfficer.php');
+				}else if($role == "time table master"){
+					header('Location:timeTableMaster.php');
+				}else if($role == "academic officer"){
+					header('Location:academicOfficer.php');
 				}
 			}
 		}
@@ -81,16 +86,7 @@
 			<span class="help-block password-err-sms"></span>
 		</div>
       </div>
-	  <div class="form-group">
-		<label>Login As</label><br>
-		<select name="title" class="form-control select2">
-		  <option value="lecturer">Lecturer</option>
-		  <option value="examination_officer">Examination Officer</option>
-		  <option value="time_table_master">Time table master</option>
-		  <option value="admission_officer">Admission Officer</option>
-		  <option value="academic_officer">Academic Officer</option>
-		</select>
-	  </div>
+	  
       <div class="row">
         <div class="col-xs-8"></div>
         <div class="col-xs-4">

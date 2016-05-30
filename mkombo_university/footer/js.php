@@ -18,7 +18,7 @@
 <script>
   $(function () {
 	//message
-	$('.displaySms').delay(4000).fadeOut();
+	$('.displaySms').delay(7000).fadeOut();
 	//Timepicker
     $(".timepicker").timepicker({
       showInputs: false
@@ -30,10 +30,12 @@
 	});
 	//for button which adds new input field in subjects catalogue.
 	$('.addBtnModule').click(function(){
-		n++;
 		$('.code_').append('<input type="text" class="form-control" name="code[]"><br>');
 		$('.module_').append('<input type="text" class="form-control" name="module_title[]"><br>');
 		$('.credit_').append('<input type="text" class="form-control" name="credit[]"><br>');
+	});
+	$('.addBtnCourse').click(function(){
+		$('.course').append('<input type="text" class="form-control" name="course[]"><br>');
 	});
     //Initialize Select2 Elements
     $(".select2").select2();
@@ -64,6 +66,15 @@
       "autoWidth": false
     }); 
 	$('#lecturerStudentMarks').DataTable(); 
+	$('#moduleAssignment').DataTable({
+		"ordering": false
+	});
+	$('#StudentMarks').DataTable({
+		"paging": false,
+		"lengthChange": false,
+		"info": false,
+		"ordering": false
+	});
   });
 </script>
 </body>

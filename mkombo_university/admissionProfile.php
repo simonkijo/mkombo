@@ -27,18 +27,10 @@
       <ul class="sidebar-menu">
         <li class="header">USER MANAGEMENT</li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-edit"></i> <span>Students Approval</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <a href="#"><i class="fa fa-edit"></i> <span>Registered Students</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li>
-				<a href="#"><i class="fa fa-file-o"></i> <span>Bachelor Degree</span> <i class="fa fa-angle-left pull-right"></i></a>
-				<ul class="treeview-menu">
-					<li><a href="admissionOfficer.php?user=admission_officer"><i class="fa fa-file-o"></i> <span>Computer Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-file-o"></i> <span>Civil Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-file-o"></i> <span>Telecommunication Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-file-o"></i> <span>Mechanical Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-file-o"></i> <span>Electrical Eng</span> </a></li>
-				</ul>
-			</li>
+            <li><a href="#"><i class="fa fa-file-o"></i> <span>Bachelor Degree</span></a></li>
+			<li><a href="#"><i class="fa fa-file-o"></i> <span>Ordinary Diploma</span></a></li>
           </ul>
         </li>
 		<!--end of students approval-->
@@ -49,17 +41,16 @@
             <li>
 				<a href="#"><i class="fa fa-files-o"></i> <span>Students by Course</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Computer Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Civil Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Telecommunication Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Mechanical Eng</span> </a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Electrical Eng</span> </a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Information Technology</span> </a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Electronics And Comm</span> </a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Civil Engineering</span> </a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> <span>Computer Engineering</span> </a></li>
 				</ul>
 			</li>
           </ul>
         </li>
 		<!--end of admission reports-->
-		<li class="active"><a href="admissionProfile.php?user=admission_officer"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
+		<li class="active"><a href="admissionProfile.php"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -71,7 +62,7 @@
     <section class="content-header">
       <h1>My Profile<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="admissionOfficer.php?user=admission_officer"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="admissionOfficer.php"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li class="active">Profile Settings</li>
       </ol>
     </section>
@@ -104,7 +95,7 @@
 					<div class="box-body box-profile">
 					  <img class="profile-user-img img-responsive img-circle" src="dist/img/user_kijo.png" alt="User profile picture">
 
-					  <h3 class="profile-username text-center"><?php echo getField('fname')." ".getField('sname');?></h3>
+					  <h3 class="profile-username text-center"><?php firstCapitalLetter(getField('fname')); echo ' '; firstCapitalLetter(getField('sname'));?></h3>
 					  <p class="text-muted text-center">Admission Officer</p>
 
 					  <ul class="list-group list-group-unbordered">

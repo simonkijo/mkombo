@@ -54,7 +54,16 @@
 					<h4>Error !</h4>
 					<p>".$err."</p>
 				</div>";
-		}?>
+		}
+		if(isset($error)){
+			if(($error[0] == 'empty' && $error[1] == 'empty' && $error[2] == 'empty') || $empty == 'empty'){
+				echo "<div class='callout callout-danger displaySms'>
+						<h4>Error !</h4>
+						<p>Sorry, You are not admitted. Please see System Administrator</p>
+					</div>";
+			}	
+		}
+		?>
 	</div>
 	<div class="col-md-3"></div>
 </div>
@@ -115,16 +124,7 @@
 					  Female
 					</label>
 				  </div>
-				  <div class="form-group">
-					<label>Title:</label><br>
-					<select name="title" class="form-control select2">
-					  <option selected="selected" value="lecturer">Lecturer</option>
-					  <option value="examination_officer">Examination Officer</option>
-					  <option value="time_table_master">Time table master</option>
-					  <option value="admission_officer">Admission Officer</option>
-					  <option value="academic_officer">Academic Officer</option>
-					</select>
-				  </div>
+	
 				  <div class="form-group">
 					<label>Phone number:</label>
 					<div class="input-group phone-err">
@@ -158,16 +158,7 @@
 					  <option>Married</option>
 					</select>
 				  </div>
-				 <!--<div class="form-group">
-					<label>Module Title:</label>
-					<div class="input-group module-err">
-					  <div class="input-group-addon">
-						<i class="fa fa-file-o"></i>
-					  </div>
-					  <input type="text" name="module_title" class="form-control module">
-					</div>
-					<span class="help-block module-err-sms err"></span>
-				  </div>-->
+				 
 					<div class="form-group">
 						<label>Username:</label>
 						<div class="input-group username-err">
@@ -229,7 +220,7 @@
 <script>
   $(function () {
 	//message
-	$('.displaySms').delay(4000).fadeOut(); 
+	$('.displaySms').delay(7000).fadeOut(); 
     //Initialize Select2 Elements
     $(".select2").select2();
 

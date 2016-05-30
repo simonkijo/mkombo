@@ -20,12 +20,12 @@
       <ul class="sidebar-menu">
         <li class="header">USER MANAGEMENT</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="student.php?user=student"><i class="fa fa-table"></i> <span>Class Time Table</span> </a></li>
-        <li><a href="studentSubjectsCat.php?user=student"><i class="fa fa-th"></i> <span>Subjects Catalogue</span> </a></li>
+        <li><a href="student.php"><i class="fa fa-table"></i> <span>Class Time Table</span> </a></li>
+        <li><a href="studentSubjectsCat.php"><i class="fa fa-th"></i> <span>Subjects Catalogue</span> </a></li>
 		<!--end of subjects catalog-->
-		<li class="active"><a href="studentAcademicReport.php?user=student"><i class="fa fa-files-o"></i> <span>Academic Reports</span> </a></li>
+		<li class="active"><a href="studentAcademicReport.php"><i class="fa fa-files-o"></i> <span>Academic Reports</span> </a></li>
 		<!--end of academic report-->
-		<li><a href="studentProfile.php?user=student"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
+		<li><a href="studentProfile.php"><i class="fa fa-user"></i> <span>Profile Settings</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -37,7 +37,7 @@
     <section class="content-header">
       <h1>Academic Report<small></small></h1>
       <ol class="breadcrumb">
-        <li><a href="student.php?user=student"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="student.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Academic Report</li>
       </ol>
     </section>
